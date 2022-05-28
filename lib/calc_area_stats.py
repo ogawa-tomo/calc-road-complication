@@ -86,6 +86,8 @@ def get_Gu_from_polygon(polygon):
         return 0
     except nx.NetworkXPointlessConcept:
         return 0
+    except ValueError:
+        return 0
 
     # bearings情報の付加
     G = ox.add_edge_bearings(G)

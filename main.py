@@ -46,6 +46,8 @@ def output_district_data(shp_file):
             row.AREA,
             row.geometry
         )
+        if '区' not in d.name:
+            continue
         if d.Gu == 0:
             # ネットワークがない
             continue
@@ -66,36 +68,6 @@ def output_district_data(shp_file):
             })
         d.save_network_fig(os.path.join(PNG_DIR, f"{d.name}_network.png"))
         d.save_bearings_fig(os.path.join(PNG_DIR, f'{d.name}_bearings.png'))
-        
-
-
-
-
-
-
-    # with open(os.path.join(CSV_DIR, file_name), 'w') as f:
-    #     writer = csv.DictWriter(f, columns)
-    #     writer.writeheader()
-    #     for d in tqdm(districts):
-    #         writer.writerow({
-    #             '都道府県': d.pref,
-    #             '市町村': d.city,
-    #             '地区': d.district,
-    #             '中心経度': d.center_lon,
-    #             '中心緯度': d.center_lat,
-    #             '面積 (m^2)': d.area,
-    #             '方向エントロピー': d.entropy,
-    #             '道路延長 (m)': d.road_length,
-    #             '道路密度 (km/km^2)': d.road_density,
-    #             'circuity': d.circuity
-    #         })
-    
-    # print('ネットワークとbearingsの描画')
-    # for d in tqdm(districts):
-    #     d.save_network_fig(os.path.join(PNG_DIR, f"{d.name}_network.png"))
-    #     d.save_bearings_fig(os.path.join(PNG_DIR, f'{d.name}_bearings.png'))
-    
-    
 
 if __name__ == '__main__':
     main()

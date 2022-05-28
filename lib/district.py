@@ -27,22 +27,25 @@ class District(object):
     
     @property
     def pref(self):
-        return self.__pref
+        return self.__get_name_avoid_none(self.__pref)
     
     @property
     def city(self):
-        return self.__city
+        return self.__get_name_avoid_none(self.__city)
     
     @property
     def district(self):
-        return self.__district
+        return self.__get_name_avoid_none(self.__district)
+    
+    @staticmethod
+    def __get_name_avoid_none(name):
+        if name is None:
+            return ''
+        return name
     
     @property
     def name(self):
-        try:
-            return self.pref + self.city + self.district
-        except TypeError:
-            return None
+        return self.pref + self.city + self.district
     
     @property
     def area(self):

@@ -1,0 +1,13 @@
+.cache
+cache
+__pycache__
+output/*
+!output/png/
+output/png/*
+!output/png/.gitkeep
+!output/csv/
+output/csv/*
+!output/csv/.gitkeep
+shp_data/*
+!shp_data/.gitkeep
+.bash_history

@@ -88,6 +88,8 @@ def get_Gu_from_polygon(polygon, network_type='bike', simplify=False, retain_all
         return 0
     except ValueError:
         return 0
+    except IndexError:
+        return 0
 
     # bearings情報の付加
     try:

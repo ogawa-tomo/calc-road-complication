@@ -77,11 +77,11 @@ def calc_total_length_from_polygon(polygon):
 
     return calc_road_length_from_Gu(Gu)
 
-def get_Gu_from_polygon(polygon):
+def get_Gu_from_polygon(polygon, network_type='bike', simplify=False, retain_all=True):
 
     # 対象地域の道路情報取得
     try:
-        G = ox.graph_from_polygon(polygon, network_type="walk")
+        G = ox.graph_from_polygon(polygon, network_type=network_type, simplify=simplify, retain_all=retain_all)
     except ox._errors.EmptyOverpassResponse:
         return 0
     except nx.NetworkXPointlessConcept:

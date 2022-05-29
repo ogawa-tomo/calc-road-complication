@@ -11,3 +11,5 @@ output/csv/*
 shp_data/*
 !shp_data/.gitkeep
 .bash_history
+renshu.py
+renshu

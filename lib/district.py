@@ -14,16 +14,6 @@ class District(object):
         self.__road_length = None
         self.__centroid = None
         self.__circuity = None
-
-    # 
-    # def calc_stats(self):
-    #     self.__Gu = get_Gu_from_polygon(self.polygon)
-    #     self.__entropy = calc_entropy_from_Gu(self.Gu)
-    #     self.__road_length = calc_road_length_from_Gu(self.Gu)
-    #     self.__centroid = self.polygon.centroid
-    #     self.__circuity = ox.stats.circuity_avg(self.Gu)
-
-
     
     @property
     def pref(self):

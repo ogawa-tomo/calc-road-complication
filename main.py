@@ -46,7 +46,10 @@ def output_district_data(shp_file):
             row.AREA,
             row.geometry
         )
-        if '区' not in d.name:
+        if '区' not in d.city:
+            continue
+        if row.JINKO == 0:
+            # 人口ゼロは無視
             continue
         if d.Gu == 0:
             # ネットワークがない

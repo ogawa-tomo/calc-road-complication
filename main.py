@@ -12,6 +12,7 @@ def main():
 
     shp_file = 'shp_data/h27ka13.shp'  # 東京都
     # shp_file = 'shp_data/h27ka31.shp'  # 鳥取県
+    # shp_file = 'test/test_data/h27ka13114.shp'  # 中野区
 
     output_district_data(shp_file)
 

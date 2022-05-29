@@ -8,7 +8,8 @@ class District(object):
         self.__city = city
         self.__district = district
         self.__area = area
-        self.__polygon = polygon
+        # self.__polygon = polygon
+        self.__polygon = polygon.buffer(-0.0001)  # バッファをとる
         self.__Gu = None  # bearings情報のついったundirectedなネットワーク
         self.__entropy = None
         self.__road_length = None

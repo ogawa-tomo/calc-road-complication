@@ -20,16 +20,17 @@ def output_district_data(shp_file):
     df_shp = gpd.read_file(shp_file)
 
     columns = [
-        '都道府県',
-        '市町村',
-        '地区',
-        '中心経度',
-        '中心緯度',
-        '面積 (m^2)',
-        '方向エントロピー',
-        '道路延長 (m)',
-        '道路密度 (km/km^2)',
-        'circuity'
+        'pref',
+        'city',
+        'district',
+        'center_lat',
+        'center_lon',
+        'area',
+        'entropy',
+        'road_length',
+        'road_density',
+        'circuity',
+        'complexity'
     ]
 
     file_name = os.path.splitext(os.path.basename(shp_file))[0] + '.csv'
@@ -58,16 +59,17 @@ def output_district_data(shp_file):
         with open(file_path, 'a') as f:
             writer = csv.DictWriter(f, columns)
             writer.writerow({
-                '都道府県': d.pref,
-                '市町村': d.city,
-                '地区': d.district,
-                '中心経度': d.center_lon,
-                '中心緯度': d.center_lat,
-                '面積 (m^2)': d.area,
-                '方向エントロピー': d.entropy,
-                '道路延長 (m)': d.road_length,
-                '道路密度 (km/km^2)': d.road_density,
-                'circuity': d.circuity
+                'pref': d.pref,
+                'city': d.city,
+                'district': d.district,
+                'center_lat': d.center_lat,
+                'center_lon': d.center_lon,
+                'area': d.area,
+                'entropy': d.entropy,
+                'road_length': d.road_length,
+                'road_density': d.road_density,
+                'circuity': d.circuity,
+                'complexity': d.complexity
             })
         d.save_network_fig(os.path.join(PNG_DIR, f"{d.name}_network.png"))
         d.save_bearings_fig(os.path.join(PNG_DIR, f'{d.name}_bearings.png'))

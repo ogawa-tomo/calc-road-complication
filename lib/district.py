@@ -14,6 +14,7 @@ class District(object):
         self.__road_length = None
         self.__centroid = None
         self.__circuity = None
+        self.__complexity = None
     
     @property
     def pref(self):
@@ -94,6 +95,10 @@ class District(object):
             return 0
         self.__circuity = ox.stats.circuity_avg(self.Gu)
         return self.__circuity
+    
+    @property
+    def complexity(self):
+        return self.road_density * self.entropy
 
     def save_network_fig(self, filepath):
         if self.Gu == 0:

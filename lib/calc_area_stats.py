@@ -88,11 +88,12 @@ def get_Gu_from_polygon(polygon, network_type='bike', simplify=False, retain_all
         return 0
     except ValueError:
         return 0
-    except IndexError:
-        return 0
 
     # bearings情報の付加
-    G = ox.add_edge_bearings(G)
+    try:
+        G = ox.add_edge_bearings(G)
+    except IndexError:
+        return 0
 
     # undirectedに変換
     Gu = ox.utils_graph.get_undirected(G)

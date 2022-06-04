@@ -18,37 +18,36 @@ def calc_area_from_polygon(polygon):
         trans = transform(project, geom) # 座標系変換
         return trans.area # 面積を返す
 
-    def Swap_xy(geom):
-        # (x, y) -> (y, x)
-        def swap_xy_coords(coords):
-            for x, y in coords:
-                yield (y, x)
-
-        # if geom.type == 'Polygon':
-        def swap_polygon(geom):
-            ring = geom.exterior
-            shell = type(ring)(list(swap_xy_coords(ring.coords)))
-            holes = list(geom.interiors)
-            for pos, ring in enumerate(holes):
-                holes[pos] = type(ring)(list(swap_xy_coords(ring.coords)))
-            return type(geom)(shell, holes)
-
-        # if geom.type == 'MultiPolygon':
-        def swap_multipolygon(geom):
-            return type(geom)([swap_polygon(part) for part in geom.geoms])
-
-        # Main
-        if geom.type == 'Polygon':
-            return swap_polygon(geom)
-        elif geom.type == 'MultiPolygon':
-            return swap_multipolygon(geom)
-        else:
-            raise TypeError('Unexpected geom.type:', geom.type)
-
-
     geom_swap = Swap_xy(polygon)
     area = geom_to_area(geom_swap)
     return area * 1e-6 # m2 -> km2 
+
+def Swap_xy(geom):
+    # (x, y) -> (y, x)
+    def swap_xy_coords(coords):
+        for x, y in coords:
+            yield (y, x)
+
+    # if geom.type == 'Polygon':
+    def swap_polygon(geom):
+        ring = geom.exterior
+        shell = type(ring)(list(swap_xy_coords(ring.coords)))
+        holes = list(geom.interiors)
+        for pos, ring in enumerate(holes):
+            holes[pos] = type(ring)(list(swap_xy_coords(ring.coords)))
+        return type(geom)(shell, holes)
+
+    # if geom.type == 'MultiPolygon':
+    def swap_multipolygon(geom):
+        return type(geom)([swap_polygon(part) for part in geom.geoms])
+
+    # Main
+    if geom.type == 'Polygon':
+        return swap_polygon(geom)
+    elif geom.type == 'MultiPolygon':
+        return swap_multipolygon(geom)
+    else:
+        raise TypeError('Unexpected geom.type:', geom.type)
 
 def calc_entropy_from_polygon(polygon):
 

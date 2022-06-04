@@ -8,6 +8,9 @@ output/png/*
 !output/csv/
 output/csv/*
 !output/csv/.gitkeep
+!output/html/
+output/html/*
+!output/html/.gitkeep
 shp_data/*
 !shp_data/.gitkeep
 .bash_history

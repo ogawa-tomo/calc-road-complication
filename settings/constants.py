@@ -11,3 +11,6 @@ CSV_DIR = './output/csv'
 
 # pngデータ出力ディレクトリ
 PNG_DIR = './output/png'
+
+# htmlデータ出力ディレクトリ
+HTML_DIR = './output/html'
